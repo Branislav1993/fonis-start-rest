@@ -13,19 +13,19 @@ public class PostDao {
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 		session.beginTransaction();
 
-		Post t = (Post) session.get(Post.class, id);
+		Post post = (Post) session.get(Post.class, id);
 
 		session.close();
 
-		return t;
+		return post;
 	}
 
-	public Post insertPost(Post t) {
+	public Post insertPost(Post post) {
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 		session.beginTransaction();
 
 		try {
-			session.save(t);
+			session.save(post);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			session.getTransaction().rollback();
@@ -33,7 +33,7 @@ public class PostDao {
 			return null;
 		}
 
-		Post newPost = (Post) session.get(Post.class, t.getId());
+		Post newPost = (Post) session.get(Post.class, post.getId());
 		session.close();
 
 		return newPost;
@@ -45,8 +45,8 @@ public class PostDao {
 		session.beginTransaction();
 
 		try {
-			Post t = (Post) session.get(Post.class, id);
-			session.delete(t);
+			Post post = (Post) session.get(Post.class, id);
+			session.delete(post);
 			session.getTransaction().commit();
 			session.close();
 
@@ -59,12 +59,12 @@ public class PostDao {
 		}
 	}
 
-	public Post updatePost(Post t) {
+	public Post updatePost(Post post) {
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 		session.beginTransaction();
 
 		try {
-			session.update(t);
+			session.update(post);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			session.getTransaction().rollback();
@@ -72,7 +72,7 @@ public class PostDao {
 			return null;
 		}
 
-		Post newPost = (Post) session.get(Post.class, t.getId());
+		Post newPost = (Post) session.get(Post.class, post.getId());
 		session.close();
 
 		return newPost;

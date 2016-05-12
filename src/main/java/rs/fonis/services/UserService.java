@@ -8,7 +8,7 @@ public interface UserService {
 
 	public boolean deleteUser(int id);
 
-	public User updateUser(User m);
+	public User updateUser(User user);
 
-	public User insertUser(User m);
+	public User insertUser(User user);
 }

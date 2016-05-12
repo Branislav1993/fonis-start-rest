@@ -20,12 +20,12 @@ public class UserDao {
 		return u;
 	}
 
-	public User insertUser(User t) {
+	public User insertUser(User user) {
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 		session.beginTransaction();
 
 		try {
-			session.save(t);
+			session.save(user);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			session.getTransaction().rollback();
@@ -33,7 +33,7 @@ public class UserDao {
 			return null;
 		}
 
-		User newUser = (User) session.get(User.class, t.getId());
+		User newUser = (User) session.get(User.class, user.getId());
 		session.close();
 
 		return newUser;
@@ -45,8 +45,8 @@ public class UserDao {
 		session.beginTransaction();
 
 		try {
-			User t = (User) session.get(User.class, id);
-			session.delete(t);
+			User user = (User) session.get(User.class, id);
+			session.delete(user);
 			session.getTransaction().commit();
 			session.close();
 
@@ -59,12 +59,12 @@ public class UserDao {
 		}
 	}
 
-	public User updateUser(User t) {
+	public User updateUser(User user) {
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 		session.beginTransaction();
 
 		try {
-			session.update(t);
+			session.update(user);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			session.getTransaction().rollback();
@@ -72,7 +72,7 @@ public class UserDao {
 			return null;
 		}
 
-		User newUser = (User) session.get(User.class, t.getId());
+		User newUser = (User) session.get(User.class, user.getId());
 		session.close();
 
 		return newUser;
