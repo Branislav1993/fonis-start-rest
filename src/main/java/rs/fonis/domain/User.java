@@ -30,7 +30,7 @@ public class User {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
-	private volatile List<Post> posts;
+	private transient List<Post> posts;
 
 	public int getId() {
 		return id;
