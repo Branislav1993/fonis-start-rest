@@ -7,7 +7,7 @@ import rs.fonis.services.UserService;
 public class UserServiceImpl implements UserService {
 
 	private UserDao ud;
-	
+
 	public UserServiceImpl() {
 		ud = new UserDao();
 	}
