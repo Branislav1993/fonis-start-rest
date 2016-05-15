@@ -1,4 +1,4 @@
-package rs.fonis.exceptions;
+package rs.fonis.rest.exceptions;
 
 import javax.ws.rs.core.Response.Status;
 

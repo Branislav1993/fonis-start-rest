@@ -1,5 +1,7 @@
 package rs.fonis.services.impl;
 
+import java.util.List;
+
 import rs.fonis.dao.UserDao;
 import rs.fonis.domain.User;
 import rs.fonis.services.UserService;
@@ -26,6 +28,11 @@ public class UserServiceImpl implements UserService {
 
 	public User insertUser(User user) {
 		return ud.insertUser(user);
+	}
+
+	@Override
+	public List<User> getUsers(Integer limit, Integer page) {
+		return ud.getUsers(limit, page);
 	}
 
 }

@@ -2,6 +2,7 @@ package rs.fonis.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import rs.fonis.database.HibernateUtil;
@@ -80,11 +81,15 @@ public class UserDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<User> getUsers() {
+	public List<User> getUsers(Integer limit, Integer page) {
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 		session.beginTransaction();
 
-		List<User> users = session.createCriteria(User.class).list();
+		String queryString = "SELECT u " + "FROM User u";
+
+		Query query = session.createQuery(queryString);
+
+		List<User> users = query.setFirstResult((page - 1) * limit).setMaxResults(limit).list();
 
 		session.close();
 
